@@ -1,113 +1,254 @@
-import Image from "next/image";
+// pages/index.js
+import { Spicy_Rice } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { UserButton } from "@/components/auth/user-button";
+const spicy = Spicy_Rice({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div>
+      {/* Header */}
+      <header className="bg-[#EA1938] text-white p-4">
+        <div className="container mx-auto flex justify-between items-center">
+          <div className={`${spicy.className} text-3xl font-bold`}>
+            Spirit of Santa
+          </div>
+          <nav className="hidden md:flex space-x-4">
+            <a href="#" className="hover:text-gray-200">
+              Home
+            </a>
+            <a href="#" className="hover:text-gray-200">
+              About
+            </a>
+            {/* <a href="#" className="hover:text-gray-200">
+              Events
+            </a> */}
+            <a href="#" className="hover:text-gray-200">
+              Contact
+            </a>
+            <UserButton />{" "}
+          </nav>
+          <button className="md:hidden bg-white text-[#EA1938] px-3 py-1 rounded">
+            Menu
+          </button>
         </div>
-      </div>
+      </header>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      {/* Hero Section */}
+      <section
+        className="text-center bg-cover bg-no-repeat bg-center h-screen flex items-center justify-center"
+        style={{ backgroundImage: "url('/santaBack.jpeg')" }}
+      >
+        <div className="bg-white bg-opacity-60 p-10 rounded-md shadow-2xl">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#2F4F4F] ">
+            Experience the Spirit of Santa
+          </h1>
+          <p className="mt-4 text-lg md:text-2xl text-[#2F4F4F]">
+            Bringing joy and wonder to all ages.
+          </p>
+          {/* <img
+          src="/elf1.png"
+          height= "100px"
+          width= "100px"
+          alt="Santa with Children"
+          className="mt-8 rounded-lg mx-auto"
+        /> */}
+          <button className="mt-6 bg-[#EA1938] text-white px-6 py-2 rounded hover:bg-[#D61245]">
+            Discover More
+          </button>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="mx-auto py-12 px-4 text-center bg-[#F5F5F5]">
+        <h2 className="text-3xl font-bold text-[#2F4F4F]">Our Mission</h2>
+        <p className="mt-4 text-lg text-[#2F4F4F]">
+          We aim to bring the magic of Santa to life through events, gifts, and
+          the joy of giving.
+        </p>
+        <img
+          className="mt-8 rounded-lg mx-auto"
+          src="/elfwithgift.png"
+          alt="Happy Elf Holding a Gift"
+          width="100px"
         />
-      </div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      {/* Events Section */}
+      <section className="bg-[#E0F7FA] py-12 px-4">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold text-[#2F4F4F]">Upcoming Events</h2>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <img src="/event1.jpg" alt="Event 1" className="rounded-lg" />
+              <h3 className="mt-4 text-xl font-bold text-[#2F4F4F]">
+                Christmas Parade
+              </h3>
+              <p className="mt-2 text-gray-600">
+                Join us for a festive parade through the city.
+              </p>
+              <button className="mt-4 bg-[#B22222] text-white px-4 py-2 rounded hover:bg-[#A52A2A]">
+                Learn More
+              </button>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <img src="/event2.jpg" alt="Event 2" className="rounded-lg" />
+              <h3 className="mt-4 text-xl font-bold text-[#2F4F4F]">
+                Santa's Workshop
+              </h3>
+              <p className="mt-2 text-gray-600">
+                Experience the magic of Santa's workshop firsthand.
+              </p>
+              <button className="mt-4 bg-[#B22222] text-white px-4 py-2 rounded hover:bg-[#A52A2A]">
+                Learn More
+              </button>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <img src="/event3.jpg" alt="Event 3" className="rounded-lg" />
+              <h3 className="mt-4 text-xl font-bold text-[#2F4F4F]">
+                Winter Wonderland
+              </h3>
+              <p className="mt-2 text-gray-600">
+                Step into a winter wonderland of lights and music.
+              </p>
+              <button className="mt-4 bg-[#B22222] text-white px-4 py-2 rounded hover:bg-[#A52A2A]">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      {/* Shop Section */}
+      <section className="mx-auto py-12 px-4 text-center bg-[#F5F5F5]">
+        <h2 className="text-3xl font-bold text-[#2F4F4F]">Shop the Spirit</h2>
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white p-4 rounded-lg shadow-lg">
+            <img src="/product1.jpg" alt="Product 1" className="rounded-lg" />
+            <h3 className="mt-4 text-xl font-bold text-[#2F4F4F]">
+              Holiday Ornament
+            </h3>
+            <p className="mt-2 text-gray-600">
+              Add a touch of Christmas magic to your tree.
+            </p>
+            <button className="mt-4 bg-[#B22222] text-white px-4 py-2 rounded hover:bg-[#A52A2A]">
+              Shop Now
+            </button>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-lg">
+            <img src="/product2.jpg" alt="Product 2" className="rounded-lg" />
+            <h3 className="mt-4 text-xl font-bold text-[#2F4F4F]">Santa Hat</h3>
+            <p className="mt-2 text-gray-600">
+              A classic Santa hat for all ages.
+            </p>
+            <button className="mt-4 bg-[#B22222] text-white px-4 py-2 rounded hover:bg-[#A52A2A]">
+              Shop Now
+            </button>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-lg">
+            <img src="/product3.jpg" alt="Product 3" className="rounded-lg" />
+            <h3 className="mt-4 text-xl font-bold text-[#2F4F4F]">
+              Festive Sweater
+            </h3>
+            <p className="mt-2 text-gray-600">
+              Stay warm and festive with our exclusive sweater.
+            </p>
+            <button className="mt-4 bg-[#B22222] text-white px-4 py-2 rounded hover:bg-[#A52A2A]">
+              Shop Now
+            </button>
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
+      {/* Testimonials Section */}
+      <section className="bg-[#E0F7FA] py-12 px-4">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold text-[#2F4F4F]">
+            What People Are Saying
           </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <p className="text-gray-600">
+                "The Spirit of Santa event was a magical experience for our
+                whole family."
+              </p>
+              <p className="mt-4 font-bold text-[#2F4F4F]">- John Doe</p>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <p className="text-gray-600">
+                "My kids loved the Christmas parade and can't wait for next
+                year!"
+              </p>
+              <p className="mt-4 font-bold text-[#2F4F4F]">- Jane Smith</p>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <p className="text-gray-600">
+                "Santa's Workshop was like stepping into a winter wonderland."
+              </p>
+              <p className="mt-4 font-bold text-[#2F4F4F]">- Emily Johnson</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {/* Newsletter Section */}
+      <section className="mx-auto py-12 px-4 text-center bg-[#F5F5F5]">
+        <h2 className="text-3xl font-bold text-[#2F4F4F]">Stay Updated</h2>
+        <form className="mt-6 flex flex-col items-center">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="px-4 py-2 rounded-lg border-gray-300 focus:ring-[#B22222] focus:border-[#B22222]"
+          />
+          <button className="mt-4 bg-[#B22222] text-white px-6 py-2 rounded hover:bg-[#A52A2A]">
+            Subscribe
+          </button>
+        </form>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#2F4F4F] text-white py-8">
+        <div className="container mx-auto text-center">
+          <div className="mb-4">
+            <a href="#" className="hover:text-gray-400">
+              Home
+            </a>{" "}
+            |
+            <a href="#" className="hover:text-gray-400 ml-2">
+              About
+            </a>{" "}
+            |
+            <a href="#" className="hover:text-gray-400 ml-2">
+              Events
+            </a>{" "}
+            |
+            <a href="#" className="hover:text-gray-400 ml-2">
+              Shop
+            </a>{" "}
+            |
+            <a href="#" className="hover:text-gray-400 ml-2">
+              Contact
+            </a>
+          </div>
+          <div className="mb-4">
+            <a href="#" className="hover:text-gray-400">
+              Facebook
+            </a>{" "}
+            |
+            <a href="#" className="hover:text-gray-400 ml-2">
+              Instagram
+            </a>{" "}
+            |
+            <a href="#" className="hover:text-gray-400 ml-2">
+              Twitter
+            </a>
+          </div>
+          <div>© 2024 Spirit of Santa. All Rights Reserved.</div>
+        </div>
+      </footer>
+    </div>
   );
 }

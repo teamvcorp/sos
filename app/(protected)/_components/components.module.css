@@ -1,0 +1,13 @@
+.meterColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+.meterContainer{
+   justify-content: space-around;
+}
+
+.image {
+   
+}

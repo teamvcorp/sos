@@ -1,0 +1,20 @@
+.dashLayout {
+    height: 70vh;
+    background: linear-gradient(
+    to bottom, 
+    #49c5fc 0%, 
+    #49c5fc 60%, 
+    #EA193B 60%, 
+    #EA193B 100%
+  );
+}
+
+.dashContainer {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1rem;
+    height: 90%;
+    width: 90%;
+    background-color: white;
+    border-radius: 10px;
+}
