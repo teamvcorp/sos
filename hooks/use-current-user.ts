@@ -4,7 +4,7 @@ export const useCurrentUser = () => {
 
   const session = useSession();
 
-  console.log(session.data?.user);
+  console.log("What is this", session);
   
   return session.data?.user;
 };

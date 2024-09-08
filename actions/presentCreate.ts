@@ -23,9 +23,9 @@ export const CreatePresent = async (values: z.infer<typeof PresentSchema>) => {
         retailer,
         retailerId,
         retailCost,
-        wholesaleCost,
-        quantityWanted,
-        userId: user?.id
+        wholesaleCost
+        
+        
       },
     });
 

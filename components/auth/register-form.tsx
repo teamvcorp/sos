@@ -43,7 +43,7 @@ export const RegisterForm = () => {
         setError(data.error);
         if (data.success) {
           setSuccess(data.success);
-          router.push("/login");
+          router.push("login");
         }
       });
     });
@@ -54,7 +54,7 @@ export const RegisterForm = () => {
       headerLabel="Create an Account"
       backButtonLabel="Already have an account?"
       backButtonHref="/auth/login"
-      showSocial
+      // showSocial add back when we understand the flow google sign in
     >
       <Form {...form}>
         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>

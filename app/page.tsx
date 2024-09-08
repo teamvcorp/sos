@@ -1,7 +1,7 @@
 // pages/index.js
 import { Spicy_Rice } from "next/font/google";
 import { cn } from "@/lib/utils";
-import { UserButton } from "@/components/auth/user-button";
+
 const spicy = Spicy_Rice({
   subsets: ["latin"],
   weight: ["400"],
@@ -29,7 +29,9 @@ export default function Home() {
             <a href="#" className="hover:text-gray-200">
               Contact
             </a>
-            <UserButton />{" "}
+            <a href="auth/login" className="hover:text-gray-200">
+              Login
+            </a>
           </nav>
           <button className="md:hidden bg-white text-[#EA1938] px-3 py-1 rounded">
             Menu

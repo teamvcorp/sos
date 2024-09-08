@@ -12,32 +12,30 @@ const { auth } = NextAuth(authConfig);
 export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
-  console.log("is logged in ", isLoggedIn)
+  console.log("is logged in ", isLoggedIn);
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  if (isApiAuthRoute) {
-    return null;
+  // Handling API authentication and public routes
+  if (isApiAuthRoute || isPublicRoute) {
+    return null; // No redirection needed
   }
 
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-    }
-    return null;
+  // Redirect non-authenticated users trying to access protected routes
+  if (!isLoggedIn && !isAuthRoute) {
+    const loginUrl = new URL("/", nextUrl.origin);
+    loginUrl.searchParams.set("callbackUrl", nextUrl.href);
+    return Response.redirect(loginUrl);
   }
-  if (isAuthRoute) {
-    if (!isLoggedIn) {
-      return Response.redirect(new URL("/", nextUrl));
-    }
-    return null;
+
+  // Redirect authenticated users to the dashboard from auth routes
+  if (isLoggedIn && isAuthRoute) {
+    return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl.origin));
   }
-  if (!isLoggedIn && !authRoutes) {
-    return Response.redirect(new URL("/", nextUrl));
-  }
-  return null;
+
+  return null; // No action needed, proceed as normal
 });
 
 export const config = {
