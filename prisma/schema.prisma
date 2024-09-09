@@ -14,6 +14,8 @@ datasource db {
 }
 
 enum UserRole {
+  PARENT
+  CHILD
   ADMIN
   USER
 }
@@ -25,7 +27,7 @@ model User {
   emailVerified      DateTime?
   image              String?
   password           String?
-  role               UserRole  @default(USER)
+  role               UserRole  @default(PARENT)
   accounts           Account[]
   magicPoints        Float?    @default(5)
   meterPoints        Float?    @default(10)
@@ -41,7 +43,7 @@ model User {
 model Present {
   id            String @id @default(auto()) @map("_id") @db.ObjectId
   name          String
-  image         String
+  imageId       String @default("/api/uploads/")
   retailer      String
   retailerId    String
   retailCost    Float

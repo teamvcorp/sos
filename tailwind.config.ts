@@ -54,11 +54,12 @@ const config = {
         },
         // Adding new custom colors
         "santa-blue": "#49c5fc",
-        "santa-dark-blue": "#0084b5",
+        "santa-dark-blue": "#032255",
         "santa-red": "#ea1938",
         "santa-pink": "#ff6295",
         "santa-green": "#37776c",
         "santa-yellow": "#ffc91c",
+        
 
       },
       borderRadius: {

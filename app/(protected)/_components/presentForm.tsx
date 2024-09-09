@@ -1,4 +1,5 @@
 "use client";
+
 import { CardWrapper } from "@/components/auth/card-wrapper";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,8 +21,9 @@ import { useState, useTransition } from "react";
 import { CreatePresent } from "@/actions/presentCreate";
 import { useRouter } from "next/navigation";
 import { useCurrentUser } from "@/hooks/use-current-user";
+
 export const PresentForm = () => {
-const user = useCurrentUser();
+  const user = useCurrentUser();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -32,12 +34,12 @@ const user = useCurrentUser();
     resolver: zodResolver(PresentSchema),
     defaultValues: {
       name: "",
+      imageId: "",
       retailer: "",
       retailerId: "",
       retailCost: 0,
       wholesaleCost: 0,
-      quantityWanted: 1,
-      userId: "",
+      onHand: 0, // Adding onHand field
     },
   });
 
@@ -75,6 +77,23 @@ const user = useCurrentUser();
                       {...field}
                       disabled={isPending}
                       placeholder="Toy Train"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="imageId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Image URL</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      placeholder="https://example.com/image.jpg"
                     />
                   </FormControl>
                   <FormMessage />
@@ -155,17 +174,16 @@ const user = useCurrentUser();
             />
             <FormField
               control={form.control}
-              name="quantityWanted"
+              name="onHand"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Quantity Wanted</FormLabel>
+                  <FormLabel>On Hand Quantity</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="10"
+                      placeholder="100"
                       type="number"
-                      min="1"
                       onChange={(e) => field.onChange(e.target.valueAsNumber)}
                     />
                   </FormControl>

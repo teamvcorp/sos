@@ -1,7 +1,15 @@
 // pages/index.js
 import { Spicy_Rice } from "next/font/google";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { FaArrowAltCircleRight, FaGift, FaTachometerAlt } from "react-icons/fa";
+import { BsEnvelopePaperHeart, BsMagic } from "react-icons/bs";
+import { Lilita_One } from "next/font/google";
 
+const lilita = Lilita_One({
+  weight: ["400"],
+  subsets: ["latin"],
+});
 const spicy = Spicy_Rice({
   subsets: ["latin"],
   weight: ["400"],
@@ -11,57 +19,139 @@ export default function Home() {
   return (
     <div>
       {/* Header */}
-      <header className="bg-[#EA1938] text-white p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className={`${spicy.className} text-3xl font-bold`}>
+      <header className="p-4">
+        <div className="container flex justify-between items-center">
+          <div
+            className={`${lilita.className} text-4xl font-bold text-[#EA1938]`}
+          >
             Spirit of Santa
           </div>
-          <nav className="hidden md:flex space-x-4">
-            <a href="#" className="hover:text-gray-200">
-              Home
-            </a>
-            <a href="#" className="hover:text-gray-200">
-              About
-            </a>
-            {/* <a href="#" className="hover:text-gray-200">
-              Events
-            </a> */}
-            <a href="#" className="hover:text-gray-200">
-              Contact
-            </a>
-            <a href="auth/login" className="hover:text-gray-200">
-              Login
-            </a>
-          </nav>
-          <button className="md:hidden bg-white text-[#EA1938] px-3 py-1 rounded">
-            Menu
-          </button>
+
+          <a
+            href="auth/login"
+            className="bg-[#EA1938] text-white px-6 py-2 rounded hover:bg-[#D61245]"
+          >
+            Login
+          </a>
         </div>
       </header>
 
       {/* Hero Section */}
+
       <section
-        className="text-center bg-cover bg-no-repeat bg-center h-screen flex items-center justify-center"
-        style={{ backgroundImage: "url('/santaBack.jpeg')" }}
+        className="text-center bg-cover bg-no-repeat bg-center min-h-screen flex items-center justify-center gap-x-6 "
+        style={{ backgroundImage: "url('/bkgdme.jpg')" }}
       >
-        <div className="bg-white bg-opacity-60 p-10 rounded-md shadow-2xl">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#2F4F4F] ">
-            Experience the Spirit of Santa
+        {/* info section */}
+        <aside className="w-1/3 flex justify-center">
+          <div className="w-full p-16">
+        
+{/* PRESENTS */}
+<div className="flex items-stretch m-3 min-w-[450px]">
+  <div className="bg-santa-red rounded-l-sm flex flex-col items-center justify-center py-2 px-6n min-w-[175px] min-h-[150px]">
+    <div className="text-center">
+      <FaGift color="white" size={50}/>
+    </div>
+    <h2 className={`${lilita.className} text-2xl font-bold text-white`}>
+      Presents
+    </h2>
+  </div>
+  <div className="bg-white opacity-80 rounded-r-sm p-4 flex-1 flex items-center">
+    <p className="text-black">Create your list for Santa that he can see instantly. Change, update, and remove gifts all year long. Earn magic for free gifts!</p>
+  </div>
+</div>
+
+{/* NICE METER */}
+<div className="flex items-stretch m-3 min-w-[450px]">
+  <div className="bg-santa-green rounded-l-sm flex flex-col items-center justify-center py-2 px-6 min-w-[175px] min-h-[150px]">
+    <div className="text-center">
+      <FaTachometerAlt color="white" size={50} />
+    </div>
+    <h2 className={`${lilita.className} text-2xl font-bold text-white`}>
+      Nice Meter
+    </h2>
+  </div>
+  <div className="bg-white opacity-80 rounded-r-sm p-4 flex-1 flex items-center">
+    <p className="text-black">Check to see if you have been naughty or nice throughout the year. Get updates and suggestions to improve your meter!</p>
+  </div>
+</div>
+{/* MAGIC POINTS */}
+<div className="flex items-stretch m-3 min-w-[450px]">
+  <div className="bg-santa-pink rounded-l-sm flex flex-col items-center justify-center py-2 px-5 min-w-[175px] min-h-[150px]">
+    <div className="text-center">
+      <BsMagic color="white" size={50} />
+    </div>
+    <h2 className={`${lilita.className} text-2xl font-bold text-white`}>
+      Magic Points
+    </h2>
+  </div>
+  <div className="bg-white opacity-80 rounded-r-sm p-4 flex-1 flex items-center">
+    <p className="text-black">Earn magic points to receive free gifts by doing good in school and in your community. </p>
+  </div>
+</div>
+{/* EMAIL SANTA */}
+<div className="flex items-stretch m-3 min-w-[450px]">
+  <div className="bg-santa-blue rounded-l-sm flex flex-col items-center justify-center py-2 px-6 min-w-[175px] min-h-[150px]">
+    <div className="text-center">
+      <BsEnvelopePaperHeart color="white" size={50} />
+    </div>
+    <h2 className={`${lilita.className} text-2xl font-bold text-white`}>
+     Email Santa
+    </h2>
+  </div>
+  <div className="bg-white opacity-80 rounded-r-sm p-4 flex-1 flex items-center">
+    <p className="text-black">Sent messages directly to Santa all year long! </p>
+  </div>
+</div>
+
+
+          
+          </div>
+        </aside>
+        {/* register section */}
+        <div className=" bg-white  p-10  shadow-[0_0_0_20px_rgba(234,25,56,1)] rounded-[2px] w-1/3">
+          <h1
+            className={`${lilita.className} mt-10 uppercase text-santa-red text-5xl md:text-5xl font-bold`}
+          >
+            Santa's Gone Digital!
           </h1>
-          <p className="mt-4 text-lg md:text-2xl text-[#2F4F4F]">
-            Bringing joy and wonder to all ages.
+          <h2
+            className={`${lilita.className} mt-10 uppercase text-santa-dark-blue text-2xl md:text-2xl font-bold`}
+          >
+            Explore Your Presents List, Earn Magic Points, Track Your Nice
+            Meter, Email Santa, and So Much More!
+          </h2>
+          <p className="mt-10 mb-4 text-md text-black">
+            Sign up today to unlock all the fun and enjoy these magical
+            features!
           </p>
-          {/* <img
-          src="/elf1.png"
-          height= "100px"
-          width= "100px"
-          alt="Santa with Children"
-          className="mt-8 rounded-lg mx-auto"
-        /> */}
-          <button className="mt-6 bg-[#EA1938] text-white px-6 py-2 rounded hover:bg-[#D61245]">
-            Discover More
-          </button>
+          <div className="flex items-center justify-center gap-2 mb-10">
+            <input
+              type="text"
+              className="flex-1 p-2 border border-gray-300 rounded "
+              placeholder="Enter your Email"
+            />
+
+            <a
+              href="/auth/register"
+              className="flex items-center justify-center bg-santa-dark-blue text-white px-6 py-2 rounded hover:bg-[#D61245] transition-colors"
+            >
+              Get Started <FaArrowAltCircleRight className="ml-3" />
+            </a>
+          </div>
         </div>
+
+        {/* comic section */}
+
+        <aside className="w-1/3 flex justify-center  ">
+          <Image
+            className="shadow-[0_0_0_20px_rgba(55,119,108,1)] rounded-[2px]"
+            src="/comicLong.jpg"
+            alt="Some image"
+            width={250}
+            height={900}
+          />
+        </aside>
       </section>
 
       {/* About Section */}
@@ -80,7 +170,7 @@ export default function Home() {
       </section>
 
       {/* Events Section */}
-      <section className="bg-[#E0F7FA] py-12 px-4">
+      {/* <section className="bg-[#E0F7FA] py-12 px-4">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold text-[#2F4F4F]">Upcoming Events</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -122,48 +212,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Shop Section */}
-      <section className="mx-auto py-12 px-4 text-center bg-[#F5F5F5]">
-        <h2 className="text-3xl font-bold text-[#2F4F4F]">Shop the Spirit</h2>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-4 rounded-lg shadow-lg">
-            <img src="/product1.jpg" alt="Product 1" className="rounded-lg" />
-            <h3 className="mt-4 text-xl font-bold text-[#2F4F4F]">
-              Holiday Ornament
-            </h3>
-            <p className="mt-2 text-gray-600">
-              Add a touch of Christmas magic to your tree.
-            </p>
-            <button className="mt-4 bg-[#B22222] text-white px-4 py-2 rounded hover:bg-[#A52A2A]">
-              Shop Now
-            </button>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-lg">
-            <img src="/product2.jpg" alt="Product 2" className="rounded-lg" />
-            <h3 className="mt-4 text-xl font-bold text-[#2F4F4F]">Santa Hat</h3>
-            <p className="mt-2 text-gray-600">
-              A classic Santa hat for all ages.
-            </p>
-            <button className="mt-4 bg-[#B22222] text-white px-4 py-2 rounded hover:bg-[#A52A2A]">
-              Shop Now
-            </button>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-lg">
-            <img src="/product3.jpg" alt="Product 3" className="rounded-lg" />
-            <h3 className="mt-4 text-xl font-bold text-[#2F4F4F]">
-              Festive Sweater
-            </h3>
-            <p className="mt-2 text-gray-600">
-              Stay warm and festive with our exclusive sweater.
-            </p>
-            <button className="mt-4 bg-[#B22222] text-white px-4 py-2 rounded hover:bg-[#A52A2A]">
-              Shop Now
-            </button>
-          </div>
-        </div>
-      </section>
+      </section> */}
 
       {/* Testimonials Section */}
       <section className="bg-[#E0F7FA] py-12 px-4">
@@ -197,13 +246,13 @@ export default function Home() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="mx-auto py-12 px-4 text-center bg-[#F5F5F5]">
+      <section className="mx-auto py-12 px-4 text-center bg-[#d8d8d8]">
         <h2 className="text-3xl font-bold text-[#2F4F4F]">Stay Updated</h2>
         <form className="mt-6 flex flex-col items-center">
           <input
             type="email"
             placeholder="Enter your email"
-            className="px-4 py-2 rounded-lg border-gray-300 focus:ring-[#B22222] focus:border-[#B22222]"
+            className="px-4 py-2 rounded-lg  border-gray-300 focus:ring-[#B22222] focus:border-[#B22222]"
           />
           <button className="mt-4 bg-[#B22222] text-white px-6 py-2 rounded hover:bg-[#A52A2A]">
             Subscribe
