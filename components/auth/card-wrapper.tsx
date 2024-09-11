@@ -19,19 +19,19 @@ export const CardWrapper = ({
   showSocial,
 }: CardWrapperProps) => {
   return (
-    <Card className="w-[400px] shadow-md">
-      <CardHeader>
-        <Header label={headerLabel} />
-      </CardHeader>
-      <CardContent>{children}</CardContent>
-      {showSocial && (
-        <CardFooter>
-          <Social />
+    <div className="flex items-center justify-center min-h-screen">
+      <Card className="w-full max-w-lg p-4 md:p-6 lg:p-8 shadow-lg rounded-lg">
+        <CardHeader className="mb-4">
+          <Header label={headerLabel} />
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {showSocial && <Social />}
+          {children}
+        </CardContent>
+        <CardFooter className="mt-6">
+          <BackButton label={backButtonLabel} href={backButtonHref} />
         </CardFooter>
-      )}
-      <CardFooter>
-        <BackButton label={backButtonLabel} href={backButtonHref} />
-      </CardFooter>
-    </Card>
+      </Card>
+    </div>
   );
 };

@@ -47,7 +47,7 @@ export const GameLoader = ({ user, label }: GamerLoaderProps) => {
 
   return (
     <>
-      <Card className="flex flex-col w-[60%] m-4 bg-santa-green text-2xl text-white">
+      <Card className="flex flex-col w-[60%] m-4 bg-santa-yellow text-2xl text-white">
         <CardHeader className="flex self-center">
           <h3>Game Loader</h3>
         </CardHeader>
@@ -68,7 +68,7 @@ export const GameLoader = ({ user, label }: GamerLoaderProps) => {
             <p className="text-sm">You have</p>
             <span>{user?.magicPoints}</span>
             <p className="text-sm">Magic Points</p>
-            <Button variant={"yellow"}>
+            <Button variant={"red"}>
               <PiSpeedometer className="mr-2" /> Details
             </Button>
           </div>

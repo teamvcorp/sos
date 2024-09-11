@@ -18,7 +18,7 @@ interface LetterMeterProps {
 }
 export const LetterCard = ({ user, label }: LetterMeterProps) => {
   return (
-    <Card className='flex flex-col justify-center items-center w-[40%] m-4 bg-santa-dark-blue text-2xl text-white'>
+    <Card className='flex flex-col justify-center items-center w-[45%] m-4 bg-santa-green text-2xl text-white'>
       <CardHeader className="flex items-center justify-center w-full">
         <h3 className={cn(`${lilita.className} uppercase`)}>My Letters to Santa</h3>
       </CardHeader>

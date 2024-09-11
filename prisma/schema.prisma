@@ -21,34 +21,59 @@ enum UserRole {
 }
 
 model User {
-  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  id                 String      @id @default(auto()) @map("_id") @db.ObjectId
   name               String?
-  email              String?   @unique
+  email              String?     @unique
   emailVerified      DateTime?
   image              String?
   password           String?
-  role               UserRole  @default(PARENT)
+  role               UserRole    @default(PARENT)
   accounts           Account[]
-  magicPoints        Float?    @default(5)
-  meterPoints        Float?    @default(10)
-  presentsId         String[]  @db.ObjectId
-  balance             Float?
-  paymentsMade        Float[]
-  totalDue            Float?
-  isTwoFactorEnabled Boolean   @default(false)
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  childrens          ChildUser[]
+  magicPoints        Float?      @default(5)
+  meterPoints        Float?      @default(10)
+  presentsId         String[]    @db.ObjectId
+  balance            Float?
+  paymentsMade       Float[]
+  totalDue           Float?
+  isTwoFactorEnabled Boolean     @default(false)
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+}
+
+model ChildUser {
+  id   String   @id @default(auto()) @map("_id") @db.ObjectId
+  role UserRole @default(CHILD)
+  parentId    String    @db.ObjectId
+  name        String?
+  magicPoints Float?    @default(5)
+  meterPoints Float?    @default(10)
+  presents    Present[]
+  childUser   User      @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  letters     Letter[]
+}
+
+model Letter {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for each letter
+  letterBody  String // The content of the letter to Santa
+  wishList    String[]   @db.String // Array of items the child is wishing for
+  createdAt   DateTime   @default(now()) // Timestamp of when the letter was written
+  updatedAt   DateTime   @updatedAt // Timestamp of the last time the letter was updated
+  ChildUser   ChildUser? @relation(fields: [childUserId], references: [id])
+  childUserId String?    @db.ObjectId
 }
 
 model Present {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String
-  imageId       String @default("/api/uploads/")
+  presentId     String    @db.ObjectId
+  imageId       String?    @default("/api/uploads/")
   retailer      String
   retailerId    String
   retailCost    Float
   wholesaleCost Float
   onHand        Float
+  Present       ChildUser @relation(fields: [presentId], references: [id], onDelete: Cascade)
 }
 
 model Account {
@@ -60,6 +85,7 @@ model Account {
   refresh_token     String?  @db.String
   access_token      String?  @db.String
   expires_at        Int?
+  ext_expires_in    Int?
   token_type        String?
   scope             String?
   id_token          String?  @db.String

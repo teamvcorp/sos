@@ -7,7 +7,8 @@ import { FaEnvelope, FaGift, FaHome } from "react-icons/fa";
 import { LuNewspaper } from "react-icons/lu";
 import { PiSpeedometerFill } from "react-icons/pi";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { logout } from "@/actions/logout";
+// import { logout } from "@/actions/logout";
+import { signOut } from "@/auth";
 import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
@@ -15,10 +16,10 @@ export const Navbar = () => {
   const user = useCurrentUser();
   const router = useRouter();
 
-  const handleOnClick = () => {
-    logout();
-    router.push("/");
-  };
+  // const handleOnClick = () => {
+  //   logout();
+  //   router.push("/");
+  // };
 
   return (
     <nav className="bg-secondary flex justify-between items-center p-4 rounded-xl shadow-sm gap-x-2">
@@ -63,7 +64,7 @@ export const Navbar = () => {
           </Link>
         </Button>
         <Button asChild variant={pathname === "/settings" ? "ghost" : "yellow"}>
-          <div className='cursor-pointer'onClick={handleOnClick}>
+          <div className='cursor-pointer'onClick={()=>signOut()}>
             <BsMagic className="mr-2" /> Logout
           </div>
         </Button>

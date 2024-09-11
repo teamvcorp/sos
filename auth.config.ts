@@ -1,12 +1,12 @@
 import bcrypt from "bcryptjs";
-import type  { NextAuthConfig }  from "next-auth";
-
-import Credentials from "next-auth/providers/credentials";
-import Github from "next-auth/providers/github";
-import Google from "next-auth/providers/google";
-
+import CredentialsProvider from "next-auth/providers/credentials";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
+import AzureADProvider from "next-auth/providers/azure-ad";
 import { LoginSchema } from "./schemas";
 import { getUserByEmail } from "./data/user";
+import { NextAuthOptions } from "next-auth";  // Use NextAuthOptions type
 
 function getEnvVar(key: string): string {
   const value = process.env[key];
@@ -16,17 +16,31 @@ function getEnvVar(key: string): string {
   return value;
 }
 
-export default {
+export const authOptions: NextAuthOptions = {
   providers: [
-    Github({
+    GithubProvider({
       clientId: getEnvVar('GITHUB_CLIENT_ID'),
       clientSecret: getEnvVar('GITHUB_CLIENT_SECRET'),
     }),
-    Google({
+    GoogleProvider({
       clientId: getEnvVar('GOOGLE_CLIENT_ID'),
       clientSecret: getEnvVar('GOOGLE_CLIENT_SECRET'),
     }),
-    Credentials({
+    FacebookProvider({
+      clientId: getEnvVar('FACEBOOK_CLIENT_ID'),
+      clientSecret: getEnvVar('FACEBOOK_CLIENT_SECRET'),
+    }),
+    AzureADProvider({
+      clientId: getEnvVar('MICROSOFT_CLIENT_ID'),
+      clientSecret: getEnvVar('MICROSOFT_CLIENT_SECRET'),
+      tenantId: getEnvVar('MICROSOFT_TENANT_ID'),
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text", placeholder: "john.doe@gmail.com" },
+        password: { label: "Password", type: "password", placeholder: "••••••••" },
+      },
       async authorize(credentials) {
         const validatedFields = LoginSchema.safeParse(credentials);
 
@@ -43,8 +57,8 @@ export default {
         return null;
       },
     }),
-    
   ],
-  
+  secret: getEnvVar('NEXTAUTH_SECRET'),
+};
 
-} satisfies NextAuthConfig;
+export default authOptions;

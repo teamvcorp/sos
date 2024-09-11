@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
-import authConfig from "./auth.config";
+import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 import {
   DEFAULT_LOGIN_REDIRECT,
   apiAuthPrefix,
@@ -7,40 +7,44 @@ import {
   publicRoutes,
 } from "@/routes";
 
-const { auth } = NextAuth(authConfig);
+const secret = process.env.NEXTAUTH_SECRET; // Ensure you have this secret set in your environment
 
-export default auth((req) => {
+export async function middleware(req) {
   const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
+  
+  // Fetch the token to check if the user is authenticated
+  const token = await getToken({ req, secret });
+  const isLoggedIn = !!token; // Checks if the user is authenticated
   console.log("is logged in ", isLoggedIn);
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  // Handling API authentication and public routes
+  // Allow requests to API authentication routes or public routes
   if (isApiAuthRoute || isPublicRoute) {
-    return null; // No redirection needed
+    return NextResponse.next(); // Continue processing the request
   }
 
   // Redirect non-authenticated users trying to access protected routes
   if (!isLoggedIn && !isAuthRoute) {
-    const loginUrl = new URL("/", nextUrl.origin);
+    const loginUrl = new URL("/", req.url);
     loginUrl.searchParams.set("callbackUrl", nextUrl.href);
-    return Response.redirect(loginUrl);
+    return NextResponse.redirect(loginUrl); // Redirect to login page
   }
 
-  // Redirect authenticated users to the dashboard from auth routes
+  // Redirect authenticated users away from auth routes (e.g., login or register)
   if (isLoggedIn && isAuthRoute) {
-    return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl.origin));
+    return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, req.url));
   }
 
-  return null; // No action needed, proceed as normal
-});
+  // Continue processing the request
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Match all paths except Next.js internals and static files
+    "/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)",
   ],
 };

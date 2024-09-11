@@ -21,8 +21,7 @@ export const PresentSchema = z.object({
     .string()
     .min(1, "Name is required")
     .max(255, "Name must be less than 255 characters"), // Name validation
-  imageId: z
-    .string(),
+  imageId: z.string(), // No additional validation here for now
   retailer: z
     .string()
     .min(1, "Retailer is required")
@@ -33,14 +32,11 @@ export const PresentSchema = z.object({
     .max(255, "Retailer ID must be less than 255 characters"), // Retailer ID validation
   retailCost: z
     .number()
-    .min(0, "Retail cost must be at least 0")
-    .positive("Retail cost must be a positive number"), // Retail cost validation
+    .min(0, "Retail cost must be at least 0"), // Retail cost validation - allows zero or more
   wholesaleCost: z
     .number()
-    .min(0, "Wholesale cost must be at least 0")
-    .positive("Wholesale cost must be a positive number"), // Wholesale cost validation
+    .min(0, "Wholesale cost must be at least 0"), // Wholesale cost validation - allows zero or more
   onHand: z
     .number()
-    .min(0, "On hand quantity must be at least 0") // On hand quantity validation
-    .positive("On hand quantity must be a positive number"), // Ensure positive quantity
+    .min(0, "On hand quantity must be at least 0") // On hand quantity validation - allows zero or more
 });

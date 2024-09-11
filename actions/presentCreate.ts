@@ -12,7 +12,9 @@ export const CreatePresent = async (values: z.infer<typeof PresentSchema>) => {
 
   // If validation fails, return an error message
   if (!validatedFields.success) {
-    return { error: "Invalid fields!" };
+    return {
+      error: validatedFields.error.format(), // This will return detailed field-level errors
+    };
   }
 
   // Extract the validated fields
@@ -25,6 +27,7 @@ export const CreatePresent = async (values: z.infer<typeof PresentSchema>) => {
     wholesaleCost,
     onHand,
   } = validatedFields.data;
+
 
   try {
     // Get the current authenticated user (if necessary for the operation)

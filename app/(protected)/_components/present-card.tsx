@@ -71,7 +71,7 @@ export const PresentCard = ({ user, label }: PresentMeterProps) => {
   }, [user.presentsId]);
 console.log(user.presentsId)
   return (
-    <Card className="flex flex-col w-[60%] m-4 bg-santa-pink text-2xl text-white">
+    <Card className="flex flex-col w-[55%] m-4 bg-santa-pink text-2xl text-white">
       <CardHeader className="flex self-center">
         <h3 className={cn(`uppercase ${lilita.className}`)}>
           {user.name} Presents

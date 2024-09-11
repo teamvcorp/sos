@@ -1,13 +1,13 @@
 "use client";
 import {signIn} from "next-auth/react"
 import { FcGoogle } from "react-icons/fc";
-import { FaFacebook, FaFacebookF, FaGithub } from "react-icons/fa";
+import { FaFacebookF, FaGithub, FaMicrosoft } from "react-icons/fa";
 
 import { Button } from "../ui/button";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 
 export const Social = () => {
-  const onClick = (provider: "google"| "github"| "facebook")=>{
+  const onClick = (provider: "google"| "github"| "facebook"| "azure-ad")=>{
     signIn(provider,{callbackUrl: DEFAULT_LOGIN_REDIRECT} )
   };
   return (
@@ -20,6 +20,9 @@ export const Social = () => {
       </Button>
       <Button size="lg" className="w-full" variant="outline" onClick={() => onClick("github")}>
         <FaGithub className="h-5 w-5" />
+      </Button>
+      <Button size="lg" className="w-full" variant="outline" onClick={() => onClick("azure-ad")}>
+        <FaMicrosoft className="h-5 w-5" />
       </Button>
     </div>
   );

@@ -161,11 +161,12 @@ export default function Home() {
           We aim to bring the magic of Santa to life through events, gifts, and
           the joy of giving.
         </p>
-        <img
+        <Image
           className="mt-8 rounded-lg mx-auto"
           src="/elfwithgift.png"
           alt="Happy Elf Holding a Gift"
-          width="100px"
+          width="100"
+          height="100"
         />
       </section>
 

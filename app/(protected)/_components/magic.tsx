@@ -18,7 +18,7 @@ interface MagicProps {
 }
 export const Magic = ({ user, label }: MagicProps) => {
   return (
-<Card className='flex flex-col justify-around w-[40%] m-4 bg-santa-dark-blue text-2xl text-white '>
+<Card className='flex flex-col justify-around w-[45%] m-4 bg-santa-blue text-2xl text-white '>
   <CardHeader className="flex self-center">
   <h3 className={cn(`${lilita.className} uppercase white-text`)}>Christmas Magic</h3>
   </CardHeader>

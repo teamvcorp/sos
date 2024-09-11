@@ -19,7 +19,7 @@ const DaysUntilChristmas: FC = () => {
 
   return (
    
-      <h1 className="text-2xl font-bold uppercase text-white mt-2">
+      <h1 className="text-2xl font-bold uppercase text-white mt-16">
         {daysUntilChristmas} Days Until Christmas
       </h1>
   
